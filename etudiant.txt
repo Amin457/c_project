@@ -1,0 +1,7 @@
+11411010 ;ahmed ;stambouli ;1 ;tic-1-g ;H ;03/06/1998 
+11411011 ;mouhamed_amine ;ben_othmen ;1 ;tic-1-g ;H ;03/06/1999 
+11411012 ;mouhamed_ali ;kabair ;1 ;tic-1-g ;h ;06/05/1998 
+0 ;a ;a ;1 ;tic-1-a ;h ;14/12/2000 
+0 ;b ;b ;1 ;tic-1-a ;f ;01/02/1998 
+11411015 ;n ;n ;1 ;tic-1-b ;f ;20/05/1998 
+11411016 ;k ;k ;1 ;tic-1-b ;f ;10/10/2000 
