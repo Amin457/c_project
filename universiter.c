@@ -98,8 +98,11 @@ void AjoutEtudiant()
     FILE *f;
     int num;
     f = fopen("etudiant.txt", "a");
-    printf("donner le CIN du nouveau etudiant:\t");
-    scanf("%d", &num);
+ 
+	printf("donner le CIN du nouveau etudiant:\t");
+    scanf("%s", &num);
+ 
+    
     fflush(stdin);
     while (recherchere(num) == 1)
     {
@@ -190,7 +193,7 @@ void Rchercherclasse()
     fclose(F);
 }
 
-// modifier étudiant
+// modifier etudiant
 void ModifEtud()
 {
     FILE *f, *fich;
@@ -250,7 +253,7 @@ void ModifEtud()
     }
 }
 
-// supprimer étudiant
+// supprimer etudiant
 void SupprimerEtud()
 {
     char rep;
@@ -282,7 +285,10 @@ void SupprimerEtud()
             rename("tempetudiant.txt", "etudiant.txt");
             printf("suppression avec succes ! ");
         }
-    }
+    }else{
+      printf("\n etudiant n'existe pas !");
+
+	}
 }
 
 void affichtous()
@@ -297,20 +303,23 @@ void affichtous()
     }
 
     printf("la liste des etudiants est :\n \n ");
-    printf("CIN \t| Nom \t        | prenom\t|niveau| classe\t| sexe\t|date de naissance\n");
-
     do
     {
         fscanf(F, "%d ;%s ;%s ;%d ;%s ;%c ;%s \n", &Etud.CIN, &Etud.Nom, &Etud.Prenom, &Etud.niv, &Etud.classe, &Etud.sexe, &Etud.date_naiss);
         fflush(stdin);
 
-        printf("%d|", Etud.CIN);
-        printf("%15s|", Etud.Nom);
-        printf("%15s|", Etud.Prenom);
-        printf("%5d |", Etud.niv);
-        printf("%8s|", Etud.classe);
-        printf("%6c |", Etud.sexe);
-        printf("%8s\n", Etud.date_naiss);
+
+		        printf("\n");
+         printf("_________________________________________________\n");
+        printf(" CIN : %d \n", Etud.CIN);
+        printf(" Nom : %s \n", Etud.Nom);
+        printf(" prenom : %s \n", Etud.Prenom);
+        printf(" niveau : %d \n", Etud.niv);
+        printf(" classe : %s \n", Etud.classe);
+        printf(" sexe : %c \n", Etud.sexe);
+        printf(" date de naissance : %s \n ", Etud.date_naiss);
+
+
 
     } while (!feof(F));
     fclose(F);
@@ -350,6 +359,8 @@ int rechercher(int Numrech)
 /*procedure ajouter enseignant*/
 void ajouter()
 {
+    system("cls");
+
     FILE *f;
     int num;
     f = fopen("enseignant.txt", "a");
@@ -379,6 +390,8 @@ void ajouter()
 /*procedure afficher tous les enseignants */
 void affichage()
 {
+	system("cls");
+
     printf("la liste de tous les enseignants : \n");
     FILE *f;
     f = fopen("enseignant.txt", "r");
@@ -497,10 +510,6 @@ void modifier()
     }
 }
 
-
-
-
-
 COORD coord = {0,0};
 
 void gotoxy(int x,int y)
@@ -522,27 +531,20 @@ int token = 0,tokens[50],payment_counter=0;
 int main_page()
 {
     int i;
-    //system("cls");
-    //system("color 0B");
+    system("cls");
 
-    printf("\n\n\n\n\n\t\t       @@_@_\n\t\t         `'*'  Welcome to TEK-UP \n\t\t\t\t\t\t\t`'*'`-@@_@\n\n");
-    printf("\n\n\n\n\t\t\t    Quality food.Serves good. (^_^)\n\n                       ");
+    printf("\n\n\n\n\n\t\t\n\t\t Welcome to TEK-UP Restaurant \n\t\t\t\t\t\t\t\n");
     for (i=0;i<36;i++)
      {
         printf("~");
      }
     printf("\n");
-    printf("                 $                                  $\n");
-    printf("                       $    Selectionner unne option -          $\n");
-    printf("                 $                                  $\n");
-    printf("                       $    1. Nouveaux Ordre.                 $\n");
-    printf("                 $                                  $\n");
-    printf("                       $    2. Payment.              $\n");
-    printf("                 $                                  $\n");
-    printf("                       $    3. Quiter.                      $");
+
+        printf("\n\n\t*************** Selectionner unne option ***************");
+        printf("\n\n\t1-Nouveaux Ordre  \n ");
+        printf("\n\n\t2-Payment \n");
+        printf("\n\n\t3-Quiter\n");
     printf("\n");
-    // printf("                 $                                  $\n");
-    // printf("                       $                                  $\n");
 
 
 
@@ -550,7 +552,7 @@ int main_page()
      {
         printf("~");
      }
-    printf("\n\n\n\n                         Entrer votre choix: ");
+    printf("\n\n\n\n Entrer votre choix: ");
     int n;
     scanf("%d",&n);
     return n;
@@ -565,21 +567,23 @@ int menu_order()
 
     int arID[10],decision,arqty[10],Bill[10],counter=0;
     work:
-    //system("cls");
-    //system("color 4F");
-    printf("\n\t\t\t\tNOTRE MENU\n\t\t\t\t---------\n");
-    printf("\n\tBUNS :\n\n");
-    printf("\t1. Kfteji ...................... 3/=\t  \n");
-    printf("\t2. riz ..........................  7/=\n");
-    printf("\t3. cake ...........................  2/=\t \n");
-    printf("\t4. kouskous ..........  9/=\t \n");
-    printf("\t5. escalope panne ...................  8/=\n");
-    printf("\t6. salade vert ....................  6/=\n");
-    printf("\t7. salade mechwia ........................  6/=\t  \n");
-    printf("\t8. spaguetti ........................... 4/=\t \n");
-    printf("\t9.  Coca-Cola ........................ 1/=\n");
-    printf("\t10. yaourt   ........................ 1/=\n");
-    printf("\n\n\tOrder your dish: (Enter 0 to finish order)\n");
+    system("cls");
+   
+            printf("\n\n\t*************** NOTRE MENU ***************");
+
+        printf("\n\n\t1-kafteji ...................... 3 dt  \n ");
+        printf("\n\n\t2-riz ..........................  7 dt \n");
+        printf("\n\n\t3-cake ...........................  2 dt\n");
+        printf("\n\n\t4-kouskous ..........  9 dt\n");
+        printf("\n\n\t5-escalope panne ...................  8 dt\n");
+        printf("\n\n\t6-salade verte ....................  6 dt\n");
+        printf("\n\n\t7-salade mechwia ........................  6 dt\n");
+        printf("\n\n\t8-spaguetti ........................... 12 dt\n");
+        printf("\n\n\t9-Coca-Cola ........................ 1 dt\n");
+        printf("\n\n\t10-yaourt   ........................ 1 dt\n");
+        
+        printf("\n\n\tOrder your dish: (Enter 0 to finish order)\n");
+
     for(;;)
     {
         counter++;
@@ -593,8 +597,8 @@ int menu_order()
         scanf("%d",&arqty[counter-1]);
 
     }
-   // system("cls");
-   printf("\n\n\n\n\n\n\n\n\n\n\t\tmerci pour votre commande. Nous preparons la vaisselle.\n\t\tJusque la, faire des selfies avec des amis. Prendre plaisir!\n\n\n\n\n\t\t\t  <Entrer 1 pour verifier votre facture>\n\t\t\tEntrer votre choix: ");
+   system("cls");
+   printf("\n\n\n\n\n\n\n\n\n\n\t\tmerci pour votre commande. Nous preparons la vaisselle.\n\t\t\n\n\n\n\n\t\t\t  <Entrer 1 pour verifier votre facture>\n\t\t\tEntrer votre choix: ");
 
     scanf("%d",&decision);
     printf("\n\n\n\n\n\n\n\n");
@@ -628,9 +632,12 @@ int menu_order()
 
     else
     {
-        //system("cls");
-       // system("color 30");
-        printf("\n\n\n\n\n\t\t       @@_@_\n\t\t         `'*'`  TEK-UP RESTAU\n\t\t\t\t\t`'*'`-@@_@\n\n");
+    	           system("cls");
+
+ 		printf("\n\n\t*************** TEK-UP RESTAU ***************");
+ 
+ 
+        printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\t\t\tCette facture de session payee      : %d\n\n",payment_counter);
         if(payment_counter<token)
@@ -653,12 +660,10 @@ void Bill_show(int arID[],int arqty[],int counter)
 {
 
     int n;
-    //system("cls");
-    // system("color B0");
-
+    system("cls");
     int i,sum=0;
     int costs[10]={3,7,2,9,8,6,6,4,1,1};
-    char items[10][16]={"Kfteji","riz","cake","kouskous","escalope panne","salade vert","salade mechwia","spaguetti","Coca-Cola","yaourt"};
+    char items[10][16]={"kafteji","riz","cake","kouskous","escalope panne","salade verte","salade mechwia","spaguetti","Coca-Cola","yaourt"};
     printf("\n\nYour Bill:\n\n\n\t\tItem(s)\t\t     Quantity\t\t    Cost\n\n\n\n");
 
     for(i=0;i<counter;i++)
@@ -694,11 +699,15 @@ void Bill_show(int arID[],int arqty[],int counter)
 
     else
     {
-        //system("cls");
-       // system("color 30");
-        printf("\n\n\n\n\n\t\t       @@_@_\n\t\t         `'*'`  TEK-UP RESTAU\n\t\t\t\t\t`'*'`-@@_@\n\n");
+    	    	           system("cls");
+
+ 		printf("\n\n\t*************** TEK-UP RESTAU ***************");
+ 
+ 
+        printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\t\t\tCette facture de session payee      : %d\n\n",payment_counter);
+    	
         if(payment_counter<token)
         {printf("\t\t\t\t Encore a payer          : %d\n\n\n\n\n\n",token-payment_counter);}
         else
@@ -803,9 +812,13 @@ void Bill_Payment()
 
     else
     {
-        //system("cls");
-       // system("color 30");
-        printf("\n\n\n\n\n\t\t       @@_@_\n\t\t         `'*'`  TEK-UP RESTAU\n\t\t\t\t\t`'*'`-@@_@\n\n");
+    	
+    	           system("cls");
+
+ 		printf("\n\n\t*************** TEK-UP RESTAU ***************");
+ 
+ 
+        printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\t\t\tCette facture de session payee      : %d\n\n",payment_counter);
         if(payment_counter<token)
@@ -830,7 +843,7 @@ void Bill_Payment()
 
 void print_progress(int percent)
 {
-    const int mul = 2; // width factor
+    const int mul = 2;
     percent = min(100, percent);
 
     // spinning animation
@@ -860,12 +873,14 @@ void main()
 
     do
     {
+    	           system("cls");
+        printf("\n\n\t*************** Welcome to tek-up  ***************");
         printf("\n\n\t*************** Menu ***************");
 
         printf("\n\n\t1-Gestion des  Etudiants  \n ");
         printf("\n\n\t2-Gestion des  Enseignants \n");
         printf("\n\n\t3-Gestion des  Employees\n");
-        printf("\n\n\t4-Gestion des  restourants\n");
+        printf("\n\n\t4-Gestion des  restaurants\n");
         printf("\n\n\t5-Quitter\n");
 
         do
@@ -877,20 +892,14 @@ void main()
         switch (choix1)
         {
         case 1:
-
-            printf("\n\n\n\n\n\n\n\n");
-            printf("\n Starting Loader...\n");
-            for (int i = 10; i <= 100; i += 5)
-            {
-                print_progress(i);
-                Sleep(150);
-            }
             printf("\n\n\n\n\n\n\n\n");
             int choix;
             char rep;
 
             do
             {
+            	           system("cls");
+
                 printf("\n\n\t*************** Menu Etudiants ***************");
 
                 printf("\n\n\t1-Ajouter des Etudiants par classe \n");
@@ -899,7 +908,7 @@ void main()
                 printf("\n\n\t4-Rechercher Etudiants par classe \n");
                 printf("\n\n\t5-Supprimer un Etudiant\n");
                 printf("\n\n\t6-Modifier un Etudiant\n");
-                printf("\n\n\t7-Afficher tous les Etudiants\n");
+                printf("\n\n\t7-Afficher toutes les Etudiants\n");
                 printf("\n\n\t8-Quitter \n");
 
                 do
@@ -947,17 +956,19 @@ void main()
             
 
         case 2:
-            printf("ens");
-            int choixe;
 
-            system("cls");
-            printf(" ** MENU ** \n");
-            printf("1 . ajouter enseignant \n");
-            printf("2 . rechercher enseignant \n");
-            printf("3 . modifier enseignant \n");
-            printf("4 . supprimer enseignant \n");
-            printf("5 . liste des enseignants \n");
-            printf("6 . Quitter \n");
+           system("cls");
+		   	
+        printf("\n\n\t*************** Menu enseignant***************");
+        printf("\n\n\t1-ajouter enseignant  \n ");
+        printf("\n\n\t2-rechercher enseignant \n");
+        printf("\n\n\t3-modifier enseignant\n");
+        printf("\n\n\t4-supprimer enseignant\n");
+        printf("\n\n\t5-liste des enseignants\n");
+        printf("\n\n\t6-Quitter\n");
+
+           int choixe;
+
 
 
             do
@@ -990,9 +1001,10 @@ void main()
              break;
 
 
-        case 3:
-            
-        int i = 0;
+    case 3:
+         {
+         int i = 0;
+			}   
 
     FILE *fp, *ft;
 	char another, choice;
@@ -1014,10 +1026,10 @@ void main()
 
 
 
-   fp = fopen("EMP.DAT","rb+");
+   fp = fopen("EMP.txt","rb+");
     if(fp == NULL)
     {
-        fp = fopen("EMP.DAT","wb+");
+        fp = fopen("EMP.txt","wb+");
         if(fp == NULL)
         {
             printf("Connot open file");
@@ -1033,18 +1045,14 @@ while(1)
 
         system("cls");
 
-        printf(" \n  ::::::::::::::::::::::::::  |gestion des employees|  :::::::::::::::::::::::::: \n");
-        gotoxy(30,05);
-        printf("1.ajouter un employee");
-        gotoxy(30,07);
-        printf("2.liste des employees");
-        gotoxy(30,9);
-        printf("3.modifier un employee");
-        gotoxy(30,11);
-        printf("4.supprimer un employee");
-        gotoxy(30,13);
-        printf("5.quitter");
-        gotoxy(30,15);
+ printf("\n\n\t*************** gestion des employees ***************");
+
+                printf("\n\n\t1-ajouter un employee \n");
+                printf("\n\n\t2-liste des employees\n");
+                printf("\n\n\t3-modifier un employee\n");
+                printf("\n\n\t4-supprimer un employee \n");
+                printf("\n\n\t5-quitter\n");
+
         printf("vos choix: ");
         fflush(stdin);
         choice  = getche();
@@ -1128,9 +1136,9 @@ while(1)
                 }
                 fclose(fp);
                 fclose(ft);
-                remove("EMP.DAT");
-                rename("Temp.dat","EMP.DAT");
-                fp = fopen("EMP.DAT", "rb+");
+                remove("EMP.txt");
+                rename("Temp.dat","EMP.txt");
+                fp = fopen("EMP.txt", "rb+");
                 printf("supprimer un autre employ��(o/n)");
                 fflush(stdin);
                 another = getche();
@@ -1162,8 +1170,7 @@ int k,j,n,d;
 
     else
     {
-        //system("cls");
-       // system("color 30");
+
         printf("\n\n\n\n\n\t\t       @@_@_\n\t\t         `'*'`  TEK-UP RESTAU\n\t\t\t\t\t`'*'`-@@_@\n\n");
         printf("\n\n\n\t\t\tCette commande de session a ete recue : %d\n\n",token);
         printf("\t\t\tCette facture de session payee      : %d\n\n",payment_counter);
